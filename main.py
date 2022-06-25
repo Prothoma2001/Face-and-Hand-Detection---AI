@@ -3,11 +3,25 @@ import glob
 import os
 import shutil
 from cvzone.HandTrackingModule import HandDetector
+import pyautogui
+import keyboard
+from PIL import ImageGrab
+import numpy as np
 
 capture = cv2.VideoCapture(0)  # to open Camera
 
 currentframe = 0000
 condition_success = 0
+ss = 0
+
+path = r"C:\PyCharm Projects (main)\Face and Hand Detection\Videos and Frames\Frames\Prothoma" + str(condition_success) + "\Ami" + str(condition_success) + "\Bg" + str(condition_success) + "\Video " + str(condition_success) + "\\"
+os.makedirs(path + "ScreenShots" + str(ss))
+
+path2 = r"C:\PyCharm Projects (main)\Face and Hand Detection\Videos and Frames\Videos\Prothoma" + str(condition_success) + "\Ami" + str(condition_success) + "\\"
+os.makedirs(path2 + "bg" + str(condition_success))
+
+path3 = r"C:\PyCharm Projects (main)\Face and Hand Detection\Videos and Frames\Frames\Prothoma" + str(condition_success) + "\Ami" + str(condition_success) + "\Bg" + str(condition_success) + "\Video " + str(condition_success) + "\ScreenShots" + str(ss) + "\\"
+
 
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
 out = cv2.VideoWriter('output.avi', fourcc, 20.0, (640, 480))
@@ -37,6 +51,12 @@ while True:
         cv2.imshow("Live Face Detection", frame)
         cv2.imshow("Image", img)
 
+        if keyboard.is_pressed('s'):
+            scrnshot = pyautogui.screenshot()
+            scrnshot = cv2.cvtColor(np.array(scrnshot), cv2.COLOR_RGB2BGR)
+            cv2.imwrite(path3 + str(ss) + ".png", scrnshot)
+            ss += 1
+
     if cv2.waitKey(20) == ord('x'):
         break
 
@@ -47,14 +67,9 @@ cv2.destroyAllWindows()
 
 #keeping .jpg and .avi files in separate folders
 
-path = r"C:\PyCharm Projects (main)\Face and Hand Detection\Videos and Frames\Frames\Prothoma" + str(condition_success) + "\Ami" + str(condition_success) + "\g" + str(condition_success) + "\\"
-os.makedirs(path + "Video " + str(condition_success))
-
-path2 = r"C:\PyCharm Projects (main)\Face and Hand Detection\Videos and Frames\Videos\Prothoma" + str(condition_success) + "\Ami" + str(condition_success) + "\\"
-os.makedirs(path2 + "bg" + str(condition_success))
 
 src_folder = r"C:\PyCharm Projects (main)\Face and Hand Detection"
-dst_folder = r"C:\PyCharm Projects (main)\Face and Hand Detection\Videos and Frames\Frames\Prothoma" + str(condition_success) + "\Ami" + str(condition_success)+ "\g" + str(condition_success)
+dst_folder = r"C:\PyCharm Projects (main)\Face and Hand Detection\Videos and Frames\Frames\Prothoma" + str(condition_success) + "\Ami" + str(condition_success)+ "\Bg" + str(condition_success)
 dst_folder2 = r"C:\PyCharm Projects (main)\Face and Hand Detection\Videos and Frames\Videos\Prothoma" + str(condition_success) + "\Ami" + str(condition_success)
 
 pattern = "\*.jpg"
