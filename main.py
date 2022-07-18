@@ -2,7 +2,7 @@ import cv2
 import glob
 import os
 import shutil
-from cvzone.HandTrackingModule import HandDetector
+from cvzone.HandTracking2022 import HandDetector
 import pyautogui
 import keyboard
 from PIL import ImageGrab
