@@ -13,6 +13,7 @@ capture = cv2.VideoCapture(0)  # to open Camera
 currentframe = 0000
 condition_success = 0
 ss = 0
+time_skips = float(10000)
 
 path = r"C:\PyCharm Projects (main)\Face and Hand Detection\Videos and Frames\Frames\Prothoma" + str(condition_success) + "\Ami" + str(condition_success) + "\Bg" + str(condition_success) + "\Video " + str(condition_success) + "\\"
 os.makedirs(path + "ScreenShots" + str(ss))
@@ -36,6 +37,8 @@ while True:
     boolean, frame = capture.read()
 
     cv2.imwrite(str(currentframe) + ".jpg", frame)
+
+    capture.set(cv2.CAP_PROP_POS_MSEC, (currentframe * time_skips))
     currentframe += 1
     out.write(frame)
 
