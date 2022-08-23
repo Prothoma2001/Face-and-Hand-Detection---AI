@@ -14,14 +14,28 @@ currentframe = 0000
 condition_success = 0
 ss = 0
 time_skips = float(10000)
+image_counter = 0
 
-path = r"C:\PyCharm Projects (main)\Face and Hand Detection\Videos and Frames\Frames\Prothoma" + str(condition_success) + "\Ami" + str(condition_success) + "\Bg" + str(condition_success) + "\Video " + str(condition_success) + "\\"
+# 1. Change "Words" for same name and same condition success
+# 2. After completing all words, increase "condition_success" value
+
+# 3. Change Name
+# 4. Change "Words" for same name and same condition success
+# 5. After completing all words, increase "condition_success" value
+
+
+path = r"C:\PyCharm Projects (main)\Face and Hand Detection\Videos and Frames\Frames\Prothoma" + str(condition_success) + "\Tmi" + str(condition_success) + "\Bg" + str(condition_success) + "\Video " + str(condition_success) + "\\"
 os.makedirs(path + "ScreenShots" + str(ss))
 
-path2 = r"C:\PyCharm Projects (main)\Face and Hand Detection\Videos and Frames\Videos\Prothoma" + str(condition_success) + "\Ami" + str(condition_success) + "\\"
+path2 = r"C:\PyCharm Projects (main)\Face and Hand Detection\Videos and Frames\Videos\Prothoma" + str(condition_success) + "\Tmi" + str(condition_success) + "\\"
 os.makedirs(path2 + "bg" + str(condition_success))
 
-path3 = r"C:\PyCharm Projects (main)\Face and Hand Detection\Videos and Frames\Frames\Prothoma" + str(condition_success) + "\Ami" + str(condition_success) + "\Bg" + str(condition_success) + "\Video " + str(condition_success) + "\ScreenShots" + str(ss) + "\\"
+path3 = r"C:\PyCharm Projects (main)\Face and Hand Detection\Videos and Frames\Frames\Prothoma" + str(condition_success) + "\Tmi" + str(condition_success) + "\Bg" + str(condition_success) + "\Video " + str(condition_success) + "\ScreenShots" + str(ss) + "\\"
+
+path4 = r"C:\PyCharm Projects (main)\Face and Hand Detection\Videos and Frames\Images" + "\\"
+os.makedirs(path4 + "Prothoma" + str(condition_success))
+
+path5 = r"C:\PyCharm Projects (main)\Face and Hand Detection\Videos and Frames\Images\Prothoma" + str(condition_success) + "\\"
 
 
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
@@ -60,6 +74,12 @@ while True:
             cv2.imwrite(path3 + str(ss) + ".png", scrnshot)
             ss += 1
 
+        if keyboard.is_pressed('z'):
+            img_name = path5 + "opencv_frame_{}.png".format(image_counter)
+            cv2.imwrite(img_name, frame)
+            print("{} written!".format(img_name))
+            image_counter += 1
+
     if cv2.waitKey(20) == ord('x'):
         break
 
@@ -72,8 +92,8 @@ cv2.destroyAllWindows()
 
 
 src_folder = r"C:\PyCharm Projects (main)\Face and Hand Detection"
-dst_folder = r"C:\PyCharm Projects (main)\Face and Hand Detection\Videos and Frames\Frames\Prothoma" + str(condition_success) + "\Ami" + str(condition_success)+ "\Bg" + str(condition_success)
-dst_folder2 = r"C:\PyCharm Projects (main)\Face and Hand Detection\Videos and Frames\Videos\Prothoma" + str(condition_success) + "\Ami" + str(condition_success)
+dst_folder = r"C:\PyCharm Projects (main)\Face and Hand Detection\Videos and Frames\Frames\Prothoma" + str(condition_success) + "\Tmi" + str(condition_success)+ "\Bg" + str(condition_success)
+dst_folder2 = r"C:\PyCharm Projects (main)\Face and Hand Detection\Videos and Frames\Videos\Prothoma" + str(condition_success) + "\Tmi" + str(condition_success)
 
 pattern = "\*.jpg"
 files = glob.glob(src_folder + pattern)
